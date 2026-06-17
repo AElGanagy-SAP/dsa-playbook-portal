@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Playbook Portal</title>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #edf1f8;
+      color: #1a2235;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #003eb0 0%, #0070f2 65%, #1a92ff 100%);
+      border-top: 5px solid #ff8800;
+      padding: 48px 60px 40px;
+    }
+    .header-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.16em;
+      text-transform: uppercase; color: #90bbff; margin-bottom: 12px;
+    }
+    header h1 {
+      font-size: 38px; font-weight: 800; color: #fff; margin-bottom: 8px;
+    }
+    header p { font-size: 15px; color: #b8d4ff; max-width: 600px; }
+
+    /* NORTH STAR BANNER */
+    .north-star {
+      background: #001f6e;
+      padding: 18px 60px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .ns-icon { font-size: 22px; margin-top: 2px; }
+    .ns-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #ffd528; margin-bottom: 5px;
+    }
+    .ns-text { color: #b8d0ff; font-size: 13px; }
+
+    /* MAIN GRID */
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 52px 40px 80px;
+    }
+
+    .section-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #6680a8; margin-bottom: 24px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 24px;
+    }
+
+    /* CARD */
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(10,20,50,0.09), 0 1px 3px rgba(10,20,50,0.05);
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(10,20,50,0.15), 0 2px 6px rgba(10,20,50,0.08);
+    }
+
+    .card-band {
+      height: 6px;
+    }
+    .band-blue   { background: linear-gradient(90deg, #0070f2, #1a92ff); }
+    .band-teal   { background: linear-gradient(90deg, #0098a9, #00bcd4); }
+    .band-orange { background: linear-gradient(90deg, #d97000, #ff8800); }
+    .band-purple { background: linear-gradient(90deg, #7c3aed, #9c5df4); }
+
+    .card-body { padding: 28px 28px 20px; flex: 1; }
+
+    .card-meta {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+    }
+    .card-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .icon-blue   { background: #e8f0ff; }
+    .icon-teal   { background: #e0f7fa; }
+    .icon-orange { background: #fff3e0; }
+    .icon-purple { background: #f3e8ff; }
+
+    .card-kpi {
+      font-size: 9.5px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 5px;
+      color: #fff;
+    }
+    .kpi-blue   { background: #0070f2; }
+    .kpi-teal   { background: #0098a9; }
+    .kpi-orange { background: #d97000; }
+    .kpi-purple { background: #7c3aed; }
+
+    .card-type {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #9aa8be;
+    }
+
+    .card h2 {
+      font-size: 19px; font-weight: 800; color: #1a2235;
+      margin-bottom: 8px; line-height: 1.25;
+    }
+    .card p {
+      font-size: 13px; color: #4a5a78; line-height: 1.65;
+    }
+
+    .card-footer {
+      padding: 16px 28px 20px;
+      border-top: 1px solid #f0f3f8;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .phase-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .phase-pill {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; padding: 3px 9px;
+      border-radius: 20px; color: #fff;
+    }
+    .pill-explore  { background: #0098a9; }
+    .pill-select   { background: #0070f2; }
+    .pill-derive   { background: #d97000; }
+    .pill-innovate { background: #7c3aed; }
+    .pill-expand   { background: #c2185b; }
+
+    .open-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; color: #0070f2;
+      text-decoration: none;
+    }
+    .open-link svg { flex-shrink: 0; }
+
+    /* FOOTER */
+    footer {
+      background: #001f6e;
+      border-top: 3px solid #ffd528;
+      padding: 22px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { color: #6890d0; font-size: 11px; }
+    footer .brand {
+      color: #ffd528; font-size: 10px; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    @media (max-width: 700px) {
+      header { padding: 36px 24px 28px; }
+      header h1 { font-size: 28px; }
+      .north-star { padding: 16px 24px; }
+      main { padding: 36px 20px 60px; }
+      .cards { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-eyebrow">SAP Digital Sales</div>
+    <h1>DSA Playbook Portal</h1>
+    <p>Guidelines, scenarios, and decision frameworks across the deal lifecycle — all in one place.</p>
+  </header>
+
+  <div class="north-star">
+    <div class="ns-icon">🧭</div>
+    <div>
+      <div class="ns-label">How to use this portal</div>
+      <div class="ns-text">Open any guide below to understand what good looks like for that KPI. Use the scenario illustrations to test your judgement on real-world situations before you're in them.</div>
+    </div>
+  </div>
+
+  <main>
+    <div class="section-label">Available Guides — 4 documents</div>
+
+    <div class="cards">
+
+      <!-- Card 1: Net Bookings One Pager -->
+      <a class="card" href="net-bookings-one-pager.html" target="_blank">
+        <div class="card-band band-blue"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <div class="card-icon icon-blue">🏆</div>
+            <span class="card-kpi kpi-blue">Net Bookings</span>
+            <span class="card-type">One Pager</span>
+          </div>
+          <h2>Net Booking Guidelines</h2>
+          <p>Simple ways to move faster, win more, and make every deal count. Covers what to do — and what to avoid — across each phase of the deal lifecycle.</p>
+        </div>
+        <div class="card-footer">
+          <div class="phase-pills">
+            <span class="phase-pill pill-explore">Explore</span>
+            <span class="phase-pill pill-select">Select</span>
+            <span class="phase-pill pill-derive">Derive &amp; Adopt</span>
+          </div>
+          <span class="open-link">
+            Open
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#0070f2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2: Net Bookings Scenarios -->
+      <a class="card" href="net-bookings-scenarios.html" target="_blank">
+        <div class="card-band band-teal"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <div class="card-icon icon-teal">💬</div>
+            <span class="card-kpi kpi-teal">Net Bookings</span>
+            <span class="card-type">Scenario Illustrations</span>
+          </div>
+          <h2>Net Bookings — Scenario Illustrations</h2>
+          <p>7 real-world situations showing when a DSA accepts, declines, or redirects. Each scenario includes the full conversation and the reasoning behind the decision.</p>
+        </div>
+        <div class="card-footer">
+          <div class="phase-pills">
+            <span class="phase-pill pill-explore">Explore</span>
+            <span class="phase-pill pill-select">Select</span>
+            <span class="phase-pill pill-derive">Derive &amp; Adopt</span>
+            <span class="phase-pill pill-expand">Expand</span>
+          </div>
+          <span class="open-link">
+            Open
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#0070f2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 3: Pipeline Progression One Pager -->
+      <a class="card" href="pipeline-progression-one-pager.html" target="_blank">
+        <div class="card-band band-orange"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <div class="card-icon icon-orange">📈</div>
+            <span class="card-kpi kpi-orange">Pipeline Progression</span>
+            <span class="card-type">One Pager</span>
+          </div>
+          <h2>Pipeline Progression Guidelines</h2>
+          <p>Move deals forward, clean up weak pipeline, and keep your focus sharp. The 3-question pipeline test and phase-by-phase guidance across Explore, Select, Derive, and Innovate.</p>
+        </div>
+        <div class="card-footer">
+          <div class="phase-pills">
+            <span class="phase-pill pill-explore">Explore</span>
+            <span class="phase-pill pill-select">Select</span>
+            <span class="phase-pill pill-derive">Derive</span>
+            <span class="phase-pill pill-innovate">Innovate</span>
+          </div>
+          <span class="open-link">
+            Open
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#0070f2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 4: Pipeline Progression Scenarios -->
+      <a class="card" href="pipeline-progression-scenarios.html" target="_blank">
+        <div class="card-band band-purple"></div>
+        <div class="card-body">
+          <div class="card-meta">
+            <div class="card-icon icon-purple">🎯</div>
+            <span class="card-kpi kpi-purple">Pipeline Progression</span>
+            <span class="card-type">Scenario Illustrations</span>
+          </div>
+          <h2>Pipeline Progression — Scenario Illustrations</h2>
+          <p>6 real-world situations across the FY26 pipeline lifecycle. Shows how to handle no-discovery demos, stalled deals, champion loss, post-sale QBRs, and innovation without a trigger.</p>
+        </div>
+        <div class="card-footer">
+          <div class="phase-pills">
+            <span class="phase-pill pill-explore">Explore</span>
+            <span class="phase-pill pill-select">Select</span>
+            <span class="phase-pill pill-derive">Derive</span>
+            <span class="phase-pill pill-innovate">Innovate</span>
+          </div>
+          <span class="open-link">
+            Open
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="#0070f2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>DSA Playbook Portal · SAP Digital Sales</p>
+    <span class="brand">SAP Digital Sales</span>
+  </footer>
+
+</body>
+</html>
