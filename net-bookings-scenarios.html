@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Net Bookings — Scenario Illustrations</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #edf1f8; color: #1a2235; font-size: 13px; line-height: 1.65;
+    }
+    .page { max-width: 860px; margin: 0 auto; padding: 0 0 60px; }
+
+    .header {
+      background: linear-gradient(135deg, #004bbf 0%, #0070f2 65%, #1a92ff 100%);
+      padding: 44px 56px 38px; border-top: 5px solid #ff8800;
+    }
+    .header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #90bbff; margin-bottom: 10px; }
+    .header h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .header p  { font-size: 14px; color: #b8d4ff; }
+
+    .north-star { background: #001f6e; padding: 20px 56px; }
+    .north-star .label { font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ffd528; margin-bottom: 7px; }
+    .north-star p { color: #b8d0ff; font-size: 12.5px; margin-bottom: 5px; }
+    .north-star .key-msg { color: #ffd528; font-weight: 700; font-size: 12px; }
+
+    .scenarios { padding: 32px 40px; }
+
+    .phase-divider { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; margin-top: 4px; }
+    .phase-divider + .phase-divider, .scenario + .phase-divider { margin-top: 36px; }
+    .phase-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: #fff; white-space: nowrap; }
+    .pill-explore      { background: #0098a9; }
+    .pill-select       { background: #0070f2; }
+    .pill-derive-adopt { background: #d97000; }
+    .pill-expand       { background: #7c3aed; }
+    .phase-divider hr { flex: 1; border: none; border-top: 2px dashed #ccd5e6; }
+
+    .scenario { background: #fff; border-radius: 18px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(10,20,50,0.09), 0 1px 3px rgba(10,20,50,0.05); }
+
+    .card-top { display: flex; align-items: center; justify-content: space-between; padding: 13px 20px; border-bottom: 1px solid #f0f3f8; }
+    .card-top .left { display: flex; align-items: center; gap: 10px; }
+    .scenario-num { font-size: 11px; font-weight: 700; color: #9aa8be; }
+    .phase-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 5px; color: #fff; }
+    .tag-explore       { background: #0098a9; }
+    .tag-select        { background: #0070f2; }
+    .tag-derive-adopt  { background: #d97000; }
+    .tag-expand        { background: #7c3aed; }
+
+    .verdict { font-size: 11.5px; font-weight: 700; padding: 5px 14px; border-radius: 20px; }
+    .v-yes      { background: #eafaf3; color: #0a7c59; border: 1.5px solid #0a7c59; }
+    .v-no       { background: #fff0f0; color: #c00010; border: 1.5px solid #c00010; }
+    .v-redirect { background: #f3eeff; color: #6d28d9; border: 1.5px solid #6d28d9; }
+
+    .chat { padding: 18px 18px 10px; background: #f4f7fb; }
+    .msg { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+    .dsa-msg { flex-direction: row-reverse; }
+
+    .avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .av-ae           { background: #dce4f0; color: #556680; }
+    .av-dsa-yes      { background: #0a7c59; color: #fff; }
+    .av-dsa-no       { background: #c00010; color: #fff; }
+    .av-dsa-redirect { background: #6d28d9; color: #fff; }
+
+    .bubble { max-width: 76%; padding: 11px 14px 12px; }
+    .b-ae           { background: #fff; border: 1px solid #e4e9f4; border-radius: 4px 16px 16px 16px; }
+    .b-dsa-yes      { background: #eafaf3; border: 1px solid #b8e8d0; border-radius: 16px 4px 16px 16px; }
+    .b-dsa-no       { background: #fff0f0; border: 1px solid #f0c0c0; border-radius: 16px 4px 16px 16px; }
+    .b-dsa-redirect { background: #f3eeff; border: 1px solid #d4b8f8; border-radius: 16px 4px 16px 16px; }
+    .b-dsa-note     { background: #e8f7f8; border: 1.5px dashed #0098a9; border-radius: 16px 4px 16px 16px; }
+
+    .sender { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 5px; }
+    .s-ae           { color: #7a8fb0; }
+    .s-dsa-yes      { color: #0a7c59; }
+    .s-dsa-no       { color: #c00010; }
+    .s-dsa-redirect { color: #6d28d9; }
+    .s-dsa-note     { color: #0098a9; font-style: italic; }
+
+    .bubble p { font-size: 13px; line-height: 1.6; margin: 0; }
+    .b-ae p           { color: #2a3550; }
+    .b-dsa-yes p      { color: #074d38; }
+    .b-dsa-no p       { color: #7a0008; }
+    .b-dsa-redirect p { color: #4a1d96; }
+    .b-dsa-note p     { color: #005f6b; }
+
+    .why-block { padding: 14px 20px; background: #f0f5ff; border-top: 1px solid #dce6ff; }
+    .why-label { font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0070f2; margin-bottom: 5px; }
+    .why-block p { font-size: 12px; color: #3a5080; line-height: 1.6; }
+
+    .footer { background: #001f6e; padding: 22px 56px; display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+    .footer p { color: #6890d0; font-size: 11px; }
+    .footer .brand { color: #ffd528; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-eyebrow">Scenario Illustrations</div>
+    <h1>DSA Net Bookings</h1>
+    <p>Real-world situations to guide DSA decisions across the deal lifecycle</p>
+  </div>
+  <div class="north-star">
+    <div class="label">Net Bookings North Star</div>
+    <p>Net Bookings are primarily won in the Explore and Select phases. Your highest impact comes from creating clarity, confidence, and momentum early in the deal.</p>
+    <div class="key-msg">→ If an activity doesn't increase deal velocity, confidence, or conversion — it's not helping Net Bookings.</div>
+  </div>
+  <div class="scenarios">
+
+    <div class="phase-divider"><span class="phase-pill pill-explore">🔍 Explore Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 01</span><span class="phase-tag tag-explore">Explore</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>I've set up a Design Thinking workshop with a great prospect next week — can you come in and facilitate? We've got a partner involved in the deal too, so it should be a strong showing.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — Not yet</div><p>The partner isn't briefed and you two have different views on the solution direction. We can't walk into that room telling different stories — the customer will sense it immediately and we'll create confusion instead of a compelling vision.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — Here's what I need first</div><p>Give me 30 minutes with you and the partner to align on the narrative, the outcome we're driving, and who plays what role in the room. Once we're on the same page, I'm fully in — and we'll actually build momentum from this workshop.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>The Explore phase requires early and open alignment with AEs and partners on direction and story. Without that foundation, even a well-run workshop will fail to create the clarity and confidence needed to accelerate a deal toward a booking.</p></div>
+    </div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 02</span><span class="phase-tag tag-explore">Explore</span></div>
+        <span class="verdict v-redirect">↪ Redirects to DVA</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>I'm working with a retail company expanding into new markets — they're struggling with localisation, compliance, and fragmented reporting across regions. Would you be able to run an industry point-of-view session for them? Not a product demo, more of a strategic conversation about where the industry is heading and what best-in-class looks like at their stage of growth.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-redirect">DSA</div><div class="bubble b-dsa-redirect"><div class="sender s-dsa-redirect">↪ DSA — This one belongs to the DVA first</div><p>Strategic industry positioning is DVA territory — that's their core responsibility. If I step in instead, we're duplicating roles and delivering a weaker version of what a DVA brings.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-redirect">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — Here's how we sequence this right</div><p>Let's bring in the DVA to lead the industry POV and set the strategic vision with the customer. Once that foundation is in place, I come in to show how SAP solutions specifically deliver on that vision. The customer needs to be convinced of the "why" before they're ready to evaluate the "how."</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>Strategic industry positioning is a DVA responsibility, not a DSA one. The DSA's role in the Explore phase is to follow that vision with a compelling demonstration of how SAP solutions make it real. Respecting that boundary ensures each role adds maximum value — and gives the customer the right conversation at the right time.</p></div>
+    </div>
+
+    <div class="phase-divider"><span class="phase-pill pill-select">🎯 Select Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 03</span><span class="phase-tag tag-select">Select</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>Can you build a fully customised demo environment for a prospect? They reached out directly, expressed strong interest in SAP, and I want to get something in front of them by next week to keep the momentum going.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — What came out of discovery?</div><p>No discovery means no relevant demo — I'd essentially be building a polished solution to an unknown problem. In the Select phase, a demo that doesn't speak to the customer's world won't drive a booking and may even create doubt.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — Here's what's actually on the table</div><p>Once we have proper discovery, there are a few paths. I can run the standard demo script and tailor the story around what we've learned — that's something I can turn around quickly and it's often more than enough to move a deal forward. If the customer needs something more specifically configured, I'll check with the Demo Build Team and see what's possible. But if what they're asking for requires heavy custom configuration work, that's partner territory — we should be looping in a partner who can do that lifting. That's not a DSA build.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>The DSA's demo toolkit is the standard script, tailored to the customer's story. Heavily configured, customer-specific environments belong to the Demo Build Team or a partner. Getting that distinction right keeps the DSA focused on conversion — and ensures the customer gets the right quality of demo from the right people.</p></div>
+    </div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 04</span><span class="phase-tag tag-select">Select</span></div>
+        <span class="verdict v-yes">✓ DSA Accepts</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>The deal is in good shape but the customer's IT and security team just raised concerns about data residency and integration with their legacy ERP. The steering committee is in two weeks and I'm worried this gives the competitor an opening. Can you help us get ahead of it?</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-yes">DSA</div><div class="bubble b-dsa-yes"><div class="sender s-dsa-yes">✓ DSA — On it, right now</div><p>I'm pulling in a solution architect and a security specialist for a focused session with their IT team — addressing every concern with specifics, not reassurances. We're clearing every blocker before it reaches the decision-makers.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>Validating architecture, integration, and security early to avoid late surprises is a core Select phase action. Unresolved technical concerns at decision stage are one of the most common reasons bookings stall or are lost to a competitor. The DSA acts proactively to protect the booking.</p></div>
+    </div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 05</span><span class="phase-tag tag-select">Select</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>I know we're mid-build on the demo, but can we expand the scope and add a few more modules? The customer's leadership team will be in the room and I think showing more of our capabilities could help increase the deal size and make a bigger impression.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — I'm holding the line on scope</div><p>This demo is built around what the customer said they need to decide — adding modules they never mentioned shifts us from solving their problem to showing off the product. Leadership will notice, and that kills credibility at exactly the wrong moment.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>At the Select phase, every element of the demo must connect to the customer's decision criteria. Losing sight of what the customer needs to say yes — and replacing it with product breadth — is one of the most common ways a near-certain booking is lost in the final stretch.</p></div>
+    </div>
+
+    <div class="phase-divider"><span class="phase-pill pill-derive-adopt">📦 Derive &amp; Adopt</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 06</span><span class="phase-tag tag-derive-adopt">Derive &amp; Adopt</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>The deal is signed but procurement wants a few more sessions to revisit the commercial agreement and negotiate the contracted scope. Would you be able to join? Your technical authority would really help justify the pricing.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — That's not my lane</div><p>Post-signing negotiations belong to you and the commercial team — that's a hard line for me. Every hour I spend in a procurement meeting is an hour I'm not moving the needle on new Explore and Select opportunities.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — What I can do</div><p>I'll share a reusable asset that clearly explains the functionalities of the modules the customer has contracted for. That gives both you and the customer a concrete reference point for what was agreed — and it's all they should need to move that conversation forward.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>The Derive &amp; Adopt phase is about a clean handover — not continued involvement in post-sale activities that belong to other roles. Staying involved beyond that point costs the DSA booking opportunities elsewhere and blurs the boundary between sales and delivery.</p></div>
+    </div>
+
+    <div class="phase-divider"><span class="phase-pill pill-expand">🔁 Expand Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 07</span><span class="phase-tag tag-expand">Expand</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>We have an existing customer who's ready to buy new products — great expansion opportunity. But they keep bringing up issues with their current implementation and it's stalling the conversation. Can you step in and help sort it out so we can move forward?</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — Implementation issues aren't my lane</div><p>The problem isn't the product — it's how it was implemented, and that sits with the partner and delivery team. If I start troubleshooting implementation work I'm out of my lane and away from where I create real value.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — But here's what I can do</div><p>I'll run a focused session with the partner, the customer, or both — showing them the art of possible with what they already have. A well-run refresher demo often shifts the customer's mindset from "the implementation is broken" to "we're not using this to its full potential." That's what unlocks the expansion conversation — and it's squarely in DSA territory.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>DSAs don't own implementation issues — those belong to the partner and delivery team. But a refresher demo that shows the customer what's achievable with the existing solution is firmly within the DSA's remit. It restores confidence in the platform and creates the right conditions for an expansion conversation to move forward.</p></div>
+    </div>
+
+  </div>
+  <div class="footer"><p>DSA Net Bookings Playbook — Scenario Illustrations</p><span class="brand">SAP Digital Sales</span></div>
+</div>
+</body></html>
