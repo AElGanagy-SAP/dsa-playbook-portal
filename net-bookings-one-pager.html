@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/I067263/Downloads/DSA_Net_Bookings_One_Pager.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Net Booking Guidelines — One Pager</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #edf1f8;
+      color: #1a2235;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .page { max-width: 1100px; margin: 0 auto; }
+
+    .header {
+      background: linear-gradient(135deg, #003eb0 0%, #0070f2 65%, #1a92ff 100%);
+      padding: 36px 52px 30px;
+      border-top: 5px solid #ff8800;
+    }
+    .header h1 { font-size: 34px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .header p  { font-size: 15px; color: #b8d4ff; }
+
+    .north-star {
+      background: #001f6e;
+      padding: 16px 52px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .ns-icon { font-size: 22px; margin-top: 2px; flex-shrink: 0; }
+    .ns-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #ffd528; margin-bottom: 5px;
+    }
+    .ns-text { color: #b8d0ff; font-size: 13px; margin-bottom: 4px; }
+    .ns-key  { color: #ffd528; font-weight: 700; font-size: 12.5px; }
+
+    .phases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: #fff;
+    }
+
+    .phases > *:nth-child(3n+1),
+    .phases > *:nth-child(3n+2) { border-right: 1px solid #e4ecf4; }
+
+    .phase-header {
+      padding: 16px 20px 14px;
+      display: flex; align-items: center; gap: 10px;
+      min-height: 88px;
+    }
+    .ph-explore      { background: #0d5252; }
+    .ph-select       { background: #0d2e7a; }
+    .ph-derive-adopt { background: #92400e; }
+
+    .phase-icon  { font-size: 20px; }
+    .phase-meta  { flex: 1; }
+    .phase-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px;
+    }
+    .phase-title { font-size: 17px; font-weight: 800; color: #fff; line-height: 1.2; }
+    .phase-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0;
+    }
+
+    .do-section    { background: #f0faf5; padding: 18px 20px; flex: 1; border-bottom: 1px solid #d4eddf; }
+    .avoid-section { background: #fff5f5; padding: 18px 20px; flex: 1; }
+
+    .section-header {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .do-header    { color: #0a7c59; }
+    .avoid-header { color: #c00010; }
+
+    .do-section ul, .avoid-section ul { list-style: none; }
+    .do-section ul li, .avoid-section ul li {
+      font-size: 12.5px; line-height: 1.55;
+      margin-bottom: 8px; padding-left: 14px; position: relative;
+    }
+    .do-section    ul li::before { content: '·'; position: absolute; left: 0; color: #0a7c59; font-weight: 800; }
+    .avoid-section ul li::before { content: '·'; position: absolute; left: 0; color: #c00010; font-weight: 800; }
+    .do-section    ul li { color: #1a3a2a; }
+    .avoid-section ul li { color: #3a1010; }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: #001f6e;
+      border-top: 3px solid #ffd528;
+    }
+    .footer-panel { padding: 20px 28px; }
+    .footer-panel:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+    .fp-label {
+      font-size: 9px; font-weight: 800; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #ffd528; margin-bottom: 10px;
+    }
+    .fp-question { font-size: 14px; font-weight: 700; color: #fff; font-style: italic; margin-bottom: 6px; }
+    .fp-sub      { font-size: 12px; color: #90b4e8; }
+    .fp-item     { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 12.5px; }
+    .fp-yes { color: #6ee7b7; }
+    .fp-no  { color: #fca5a5; }
+
+    @media print {
+      body { background: #fff; }
+      .page { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <h1>Net Booking Guidelines</h1>
+    <p>Simple ways to move faster, win more, and make every deal count.</p>
+  </div>
+
+  <div class="north-star">
+    <div class="ns-icon">🧭</div>
+    <div>
+      <div class="ns-label">Net Bookings North Star</div>
+      <div class="ns-text">Your biggest wins happen in the Explore and Select phases — that's where you build the clarity and confidence that get deals done.</div>
+      <div class="ns-key">→ Ask yourself: does this move the deal forward? If not, it's probably not worth your time right now.</div>
+    </div>
+  </div>
+
+  <div class="phases">
+
+    <div class="phase-header ph-explore">
+      <div class="phase-icon">🔍</div>
+      <div class="phase-meta">
+        <div class="phase-label">Explore Phase</div>
+        <div class="phase-title">Where You Build Momentum</div>
+      </div>
+      <div class="phase-num">01</div>
+    </div>
+    <div class="phase-header ph-select">
+      <div class="phase-icon">🎯</div>
+      <div class="phase-meta">
+        <div class="phase-label">Select Phase</div>
+        <div class="phase-title">Where Deals Get Closed</div>
+      </div>
+      <div class="phase-num">02</div>
+    </div>
+    <div class="phase-header ph-derive-adopt">
+      <div class="phase-icon">📦</div>
+      <div class="phase-meta">
+        <div class="phase-label">Derive &amp; Adopt</div>
+        <div class="phase-title">Where You Lock In Future Value</div>
+      </div>
+      <div class="phase-num">03</div>
+    </div>
+
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Dig into the real business problems — don't just take the brief at face value.</li>
+        <li>Make the customer's pain feel real and show how SAP solves it.</li>
+        <li>Paint a picture of what great looks like — use design thinking, demo days, or industry stories.</li>
+        <li>Get your AEs and partners on the same page early — no surprises later.</li>
+      </ul>
+    </div>
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Run demos that speak to their world — tackle real pain points, not just features.</li>
+        <li>Sort out architecture, integration, and security early so it doesn't come back to bite you.</li>
+        <li>Build a business case that hits home — lean on DVA support to back it up.</li>
+        <li>Pull in the right people at the right time — don't let doubts linger.</li>
+      </ul>
+    </div>
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Hand off the full picture — goals, KPIs, and what success looks like (to be aligned).</li>
+        <li>Tell the value story to post-sales so they can grow and expand the account.</li>
+      </ul>
+    </div>
+
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't jump into a demo before you understand what they actually care about.</li>
+        <li>Don't go deep on tech before everyone agrees on the direction.</li>
+        <li>Don't go it alone — align with your account team first.</li>
+        <li>Don't commit to scope before the sponsor is fully on board.</li>
+      </ul>
+    </div>
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't run a generic demo — if it's not about them, they'll tune out.</li>
+        <li>Don't get lost in tech talk without tying it back to their business.</li>
+        <li>Don't wait until it's urgent to bring in specialists.</li>
+        <li>Don't lose track of what they actually need to say yes.</li>
+      </ul>
+    </div>
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't get pulled into delivery — that's not your lane.</li>
+        <li>Don't step in for Customer Success or Adoption — let them do their job.</li>
+        <li>Don't spend energy where there's no deal or expansion on the table.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-panel">
+      <div class="fp-label">🗝️ Your Personal Net Bookings Check</div>
+      <div class="fp-question">"Will this move the deal forward or make it more likely to close?"</div>
+      <div class="fp-sub">If not — do not engage.</div>
+    </div>
+    <div class="footer-panel">
+      <div class="fp-label">Net Bookings Success Profile</div>
+      <div class="fp-item fp-yes">✓&nbsp; Get in early, keep things moving, and stay focused on winning deals.</div>
+      <div class="fp-item fp-no">✗&nbsp; Show up late, hang around post-sale, or do delivery work instead of selling.</div>
+    </div>
+  </div>
+
+</div>
+</body></html>
