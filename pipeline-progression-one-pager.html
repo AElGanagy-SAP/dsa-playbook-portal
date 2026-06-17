@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Pipeline Progression Guidelines — One Pager</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #edf1f8; color: #1a2235; font-size: 13px; line-height: 1.55; }
+    .page { max-width: 1100px; margin: 0 auto; }
+
+    .header { background: linear-gradient(135deg, #003eb0 0%, #0070f2 65%, #1a92ff 100%); padding: 36px 52px 30px; border-top: 5px solid #ff8800; }
+    .header h1 { font-size: 34px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .header p  { font-size: 15px; color: #b8d4ff; }
+
+    .north-star { background: #001f6e; padding: 16px 52px; display: flex; align-items: flex-start; gap: 14px; }
+    .ns-icon { font-size: 22px; margin-top: 2px; flex-shrink: 0; }
+    .ns-label { font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ffd528; margin-bottom: 5px; }
+    .ns-text { color: #b8d0ff; font-size: 13px; margin-bottom: 4px; }
+    .ns-key  { color: #ffd528; font-weight: 700; font-size: 12.5px; }
+
+    .phases { display: grid; grid-template-columns: repeat(4, 1fr); background: #fff; }
+    .phases > *:nth-child(4n+1), .phases > *:nth-child(4n+2), .phases > *:nth-child(4n+3) { border-right: 1px solid #e4ecf4; }
+
+    .phase-header { padding: 14px 16px 12px; display: flex; align-items: center; gap: 8px; min-height: 80px; }
+    .ph-explore  { background: #0d5252; }
+    .ph-select   { background: #0d2e7a; }
+    .ph-derive   { background: #92400e; }
+    .ph-innovate { background: #4c1d95; }
+
+    .phase-icon  { font-size: 18px; }
+    .phase-meta  { flex: 1; }
+    .phase-label { font-size: 8.5px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px; }
+    .phase-title { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; }
+    .phase-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; color: #fff; flex-shrink: 0; }
+
+    .do-section    { background: #f0faf5; padding: 15px 16px; flex: 1; border-bottom: 1px solid #d4eddf; }
+    .avoid-section { background: #fff5f5; padding: 15px 16px; flex: 1; }
+
+    .section-header { display: flex; align-items: center; gap: 6px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .do-header    { color: #0a7c59; }
+    .avoid-header { color: #c00010; }
+
+    .do-section ul, .avoid-section ul { list-style: none; }
+    .do-section ul li, .avoid-section ul li { font-size: 12px; line-height: 1.55; margin-bottom: 8px; padding-left: 12px; position: relative; }
+    .do-section    ul li::before { content: '·'; position: absolute; left: 0; color: #0a7c59; font-weight: 800; }
+    .avoid-section ul li::before { content: '·'; position: absolute; left: 0; color: #c00010; font-weight: 800; }
+    .do-section    ul li { color: #1a3a2a; }
+    .avoid-section ul li { color: #3a1010; }
+
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr; background: #001f6e; border-top: 3px solid #ffd528; }
+    .footer-panel { padding: 20px 28px; }
+    .footer-panel:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+    .fp-label { font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #ffd528; margin-bottom: 10px; }
+    .fp-list { list-style: none; counter-reset: fp-counter; }
+    .fp-list li { counter-increment: fp-counter; color: #b8d0ff; font-size: 12.5px; margin-bottom: 6px; padding-left: 20px; position: relative; }
+    .fp-list li::before { content: counter(fp-counter) "."; position: absolute; left: 0; color: #ffd528; font-weight: 700; font-size: 12px; }
+    .fp-no-text  { font-size: 12px; color: #ffd528; font-weight: 700; margin-top: 8px; }
+    .fp-bold { font-size: 13px; font-weight: 700; font-style: italic; color: #fff; line-height: 1.6; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <h1>Pipeline Progression Guidelines</h1>
+    <p>Move deals forward, clean up weak pipeline, and keep your focus sharp.</p>
+  </div>
+  <div class="north-star">
+    <div class="ns-icon">📊</div>
+    <div>
+      <div class="ns-label">Pipeline Progression North Star</div>
+      <div class="ns-text">Pipeline Progression improves when more pipeline converts to Booked/Won, weak deals are removed early, and new pipeline has a real shot to close.</div>
+      <div class="ns-key">→ If it doesn't move a deal forward or remove it from pipeline — it's not helping your number.</div>
+    </div>
+  </div>
+  <div class="phases">
+    <div class="phase-header ph-explore">
+      <div class="phase-icon">🔍</div>
+      <div class="phase-meta"><div class="phase-label">Explore</div><div class="phase-title">Improve Quality at the Source</div></div>
+      <div class="phase-num">01</div>
+    </div>
+    <div class="phase-header ph-select">
+      <div class="phase-icon">🎯</div>
+      <div class="phase-meta"><div class="phase-label">Select</div><div class="phase-title">Where the KPI is Won or Lost</div></div>
+      <div class="phase-num">02</div>
+    </div>
+    <div class="phase-header ph-derive">
+      <div class="phase-icon">📦</div>
+      <div class="phase-meta"><div class="phase-label">Derive</div><div class="phase-title">Protect Future Pipeline Quality</div></div>
+      <div class="phase-num">03</div>
+    </div>
+    <div class="phase-header ph-innovate">
+      <div class="phase-icon">💡</div>
+      <div class="phase-meta"><div class="phase-label">Innovate</div><div class="phase-title">Drive Year-over-Year Growth</div></div>
+      <div class="phase-num">04</div>
+    </div>
+
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Cut weak opps early — no problem, no buyer, no next step means it shouldn't be in your pipeline.</li>
+        <li>Force clarity after discovery: lock in the use case, buying trigger, and decision path.</li>
+        <li>Use one-to-many activities only when they create real, measurable movement.</li>
+      </ul>
+    </div>
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Design every demo to unlock a decision — not just to inform.</li>
+        <li>Attack stalled deals head-on: advance them, rescope, or close them out.</li>
+        <li>Be ruthless about priorities: highest ACV, earliest close, highest likelihood to close.</li>
+      </ul>
+    </div>
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Make value promises explicit at handover — don't leave post-sales guessing.</li>
+        <li>Re-engage only when there's a real new pain or expansion trigger.</li>
+      </ul>
+    </div>
+    <div class="do-section">
+      <div class="section-header do-header"><span>✓</span> What to Do</div>
+      <ul>
+        <li>Run expansion discovery only when there's a real business trigger behind it.</li>
+        <li>Enable partners only when it leads to real, qualified opportunities.</li>
+      </ul>
+    </div>
+
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't keep "nice conversations" alive as pipeline — they're not opportunities.</li>
+        <li>Don't run discovery with no decision outcome in mind.</li>
+        <li>Don't create pipeline without clear Sales ownership.</li>
+      </ul>
+    </div>
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't spend time on deals with no active buyer.</li>
+        <li>Don't over-engineer low-probability deals — the juice isn't worth the squeeze.</li>
+        <li>Don't treat all pipeline as equal — not every deal deserves the same attention.</li>
+      </ul>
+    </div>
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't stay involved in pure delivery — that's not your lane.</li>
+        <li>Don't attend QBRs without a clear expansion intent.</li>
+      </ul>
+    </div>
+    <div class="avoid-section">
+      <div class="section-header avoid-header"><span>✗</span> What to Avoid</div>
+      <ul>
+        <li>Don't push innovation without a buying trigger to back it up.</li>
+        <li>Don't run upsell motions without AE/CSM alignment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-grid">
+    <div class="footer-panel">
+      <div class="fp-label">🗝️ The 3-Question Pipeline Test</div>
+      <ul class="fp-list">
+        <li>Will this move the deal forward this quarter?</li>
+        <li>Will this improve pipeline quality or conversion?</li>
+        <li>Will this remove weak pipeline if needed?</li>
+      </ul>
+      <div class="fp-no-text">If no — don't engage.</div>
+    </div>
+    <div class="footer-panel">
+      <div class="fp-label">Bottom Line</div>
+      <div class="fp-bold">Pipeline Progression gets better when you help deals move — or disappear. Keeping weak pipeline alive hurts conversion, focus, and your variable.</div>
+    </div>
+  </div>
+</div>
+</body></html>
