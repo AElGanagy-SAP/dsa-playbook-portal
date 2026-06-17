@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Pipeline Progression — Scenario Illustrations</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #edf1f8; color: #1a2235; font-size: 13px; line-height: 1.65; }
+    .page { max-width: 860px; margin: 0 auto; padding: 0 0 60px; }
+
+    .header { background: linear-gradient(135deg, #004bbf 0%, #0070f2 65%, #1a92ff 100%); padding: 44px 56px 38px; border-top: 5px solid #ff8800; }
+    .header-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #90bbff; margin-bottom: 10px; }
+    .header h1 { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .header p  { font-size: 14px; color: #b8d4ff; }
+
+    .north-star { background: #001f6e; padding: 20px 56px; }
+    .north-star .label { font-size: 9px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #ffd528; margin-bottom: 7px; }
+    .north-star p { color: #b8d0ff; font-size: 12.5px; margin-bottom: 5px; }
+    .north-star .key-msg { color: #ffd528; font-weight: 700; font-size: 12px; }
+
+    .scenarios { padding: 32px 40px; }
+
+    .phase-divider { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; margin-top: 4px; }
+    .phase-divider + .phase-divider, .scenario + .phase-divider { margin-top: 36px; }
+    .phase-pill { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 16px; border-radius: 20px; color: #fff; white-space: nowrap; }
+    .pill-explore  { background: #0098a9; }
+    .pill-select   { background: #0070f2; }
+    .pill-derive   { background: #d97000; }
+    .pill-innovate { background: #7c3aed; }
+    .phase-divider hr { flex: 1; border: none; border-top: 2px dashed #ccd5e6; }
+
+    .scenario { background: #fff; border-radius: 18px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 4px 20px rgba(10,20,50,0.09), 0 1px 3px rgba(10,20,50,0.05); }
+
+    .card-top { display: flex; align-items: center; justify-content: space-between; padding: 13px 20px; border-bottom: 1px solid #f0f3f8; }
+    .card-top .left { display: flex; align-items: center; gap: 10px; }
+    .scenario-num { font-size: 11px; font-weight: 700; color: #9aa8be; }
+    .phase-tag { font-size: 9.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 5px; color: #fff; }
+    .tag-explore  { background: #0098a9; }
+    .tag-select   { background: #0070f2; }
+    .tag-derive   { background: #d97000; }
+    .tag-innovate { background: #7c3aed; }
+
+    .verdict { font-size: 11.5px; font-weight: 700; padding: 5px 14px; border-radius: 20px; }
+    .v-yes { background: #eafaf3; color: #0a7c59; border: 1.5px solid #0a7c59; }
+    .v-no  { background: #fff0f0; color: #c00010; border: 1.5px solid #c00010; }
+
+    .chat { padding: 18px 18px 10px; background: #f4f7fb; }
+    .msg { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+    .dsa-msg { flex-direction: row-reverse; }
+
+    .avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; flex-shrink: 0; margin-top: 2px; }
+    .av-ae      { background: #dce4f0; color: #556680; }
+    .av-dsa-yes { background: #0a7c59; color: #fff; }
+    .av-dsa-no  { background: #c00010; color: #fff; }
+
+    .bubble { max-width: 76%; padding: 11px 14px 12px; }
+    .b-ae      { background: #fff; border: 1px solid #e4e9f4; border-radius: 4px 16px 16px 16px; }
+    .b-dsa-yes { background: #eafaf3; border: 1px solid #b8e8d0; border-radius: 16px 4px 16px 16px; }
+    .b-dsa-no  { background: #fff0f0; border: 1px solid #f0c0c0; border-radius: 16px 4px 16px 16px; }
+    .b-dsa-note{ background: #e8f7f8; border: 1.5px dashed #0098a9; border-radius: 16px 4px 16px 16px; }
+
+    .sender { font-size: 9.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 5px; }
+    .s-ae       { color: #7a8fb0; }
+    .s-dsa-yes  { color: #0a7c59; }
+    .s-dsa-no   { color: #c00010; }
+    .s-dsa-note { color: #0098a9; font-style: italic; }
+
+    .bubble p { font-size: 13px; line-height: 1.6; margin: 0; }
+    .b-ae p      { color: #2a3550; }
+    .b-dsa-yes p { color: #074d38; }
+    .b-dsa-no p  { color: #7a0008; }
+    .b-dsa-note p{ color: #005f6b; }
+
+    .why-block { padding: 14px 20px; background: #f0f5ff; border-top: 1px solid #dce6ff; }
+    .why-label { font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #0070f2; margin-bottom: 5px; }
+    .why-block p { font-size: 12px; color: #3a5080; line-height: 1.6; }
+
+    .footer { background: #001f6e; padding: 22px 56px; display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+    .footer p { color: #6890d0; font-size: 11px; }
+    .footer .brand { color: #ffd528; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="header">
+    <div class="header-eyebrow">Scenario Illustrations</div>
+    <h1>DSA Pipeline Progression</h1>
+    <p>Real-world situations to guide DSA decisions across the pipeline lifecycle (FY26)</p>
+  </div>
+  <div class="north-star">
+    <div class="label">Pipeline Progression North Star</div>
+    <p>Pipeline Progression improves when more pipeline converts to Booked/Won, weak deals are removed early, and new pipeline has a real shot to close.</p>
+    <div class="key-msg">→ If it doesn't move a deal forward or remove it from pipeline — it's not helping your number.</div>
+  </div>
+  <div class="scenarios">
+
+    <div class="phase-divider"><span class="phase-pill pill-explore">🔍 Explore Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 01</span><span class="phase-tag tag-explore">Explore</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>We met a prospect at a conference — they want a demo next week but don't want to sit through another discovery call. Can you just run it?</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — Not without context</div><p>A demo without context becomes a generic product walkthrough — the exact thing this customer is already tired of seeing. Without knowing what actually matters to them, there's no way to make the session worth their time.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — Here's a middle ground</div><p>Let me frame a short 20-minute pre-call as a "pre-demo briefing" — positioned as something that makes the demo sharper and more relevant to their world. That's usually all I need, and customers rarely push back when it's framed that way.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>Jumping into demos without understanding business context is exactly what the Explore phase warns against. The DSA's role is to improve pipeline quality at the source — not add motion without direction.</p></div>
+    </div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 02</span><span class="phase-tag tag-explore">Explore</span></div>
+        <span class="verdict v-yes">✓ DSA Accepts</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>I've got a CFO who's frustrated with slow financial close cycles — they have a board presentation in 6 weeks and are actively looking for a solution. Can you join the next call to help structure the discovery and sharpen the use case?</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-yes">DSA</div><div class="bubble b-dsa-yes"><div class="sender s-dsa-yes">✓ DSA — This is the right call to invest in</div><p>Real pain, senior decision-maker, and a hard deadline — this is exactly the opportunity worth jumping on at Explore stage. I'll come prepared to validate the pain, confirm the decision path, and lock in a use case that can anchor the Select conversation.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>A real problem, a real buyer, and a time-bound trigger are all present. Structured discovery here forces the clarity — use case, buying trigger, decision path — that the playbook requires before moving forward.</p></div>
+    </div>
+
+    <div class="phase-divider"><span class="phase-pill pill-select">🎯 Select Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 03</span><span class="phase-tag tag-select">Select</span></div>
+        <span class="verdict v-yes">✓ DSA Accepts</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>We had a demo two months ago that generated interest but no commitment. I've managed to get another meeting with the VP of Operations — can you come in with something sharper this time?</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-yes">DSA</div><div class="bubble b-dsa-yes"><div class="sender s-dsa-yes">✓ DSA — I'm in, but on my terms</div><p>I'm not repeating the first session. Share everything you know about the VP's specific frustrations — I'll build a scenario that mirrors their reality and is designed to end with a decision, not just interest.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-yes">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — What this session will look like</div><p>We go in with one clear goal: break the stall, not extend it. The session ends with a yes, a no, or a rescoped conversation — all three are better outcomes than walking away with "they're still interested."</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>This is the Select phase in action — attacking a stalled opportunity with a targeted approach designed to unlock a decision. The DSA sets the right expectation: every demo must drive an outcome, not just generate interest.</p></div>
+    </div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 04</span><span class="phase-tag tag-select">Select</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>A deal has been in pipeline for 5 months but the original champion left and we haven't found a replacement. The ACV is low but I think a thorough technical deep-dive might re-energise the opportunity. Can you help?</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — No active buyer, no live session</div><p>Days of prep for a deal with no champion isn't a responsible use of my time — without a buyer in the room, even a great session goes nowhere.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — Here's what I can do instead</div><p>I'll pull together a pre-built industry demo recording, a relevant customer success story, and a concise value snapshot for their sector. If someone engages with those assets and a new stakeholder steps forward, that becomes my trigger to re-engage properly — and the deal earns its way back into active pipeline.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>The playbook is clear — don't spend time on deals with no buyer and don't over-engineer low-probability opportunities. Reusable assets let the AE keep the door open without pulling the DSA away from deals that can actually move this quarter.</p></div>
+    </div>
+
+    <div class="phase-divider"><span class="phase-pill pill-derive">📦 Derive Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 05</span><span class="phase-tag tag-derive">Derive</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>A deal we closed three months ago is now in implementation. Would you be able to join the upcoming quarterly business review? It'd really help strengthen the relationship.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — Not without an expansion trigger</div><p>At this stage the relationship belongs to Customer Success — stepping in without a specific reason adds no value and pulls time away from active pipeline.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — When I would engage</div><p>If a new business pain or expansion opportunity has surfaced — a new department, a process they want to improve — I'm happy to join with a clear purpose. Without that trigger, the QBR is a Customer Success conversation, not a DSA one.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>The Derive phase explicitly says to avoid attending QBRs without a clear expansion intent and to not replace the Customer Success role. DSA involvement post-sale without a business reason costs pipeline time elsewhere and doesn't move the KPI.</p></div>
+    </div>
+
+    <div class="phase-divider"><span class="phase-pill pill-innovate">💡 Innovate Phase</span><hr></div>
+
+    <div class="scenario">
+      <div class="card-top">
+        <div class="left"><span class="scenario-num">Scenario 06</span><span class="phase-tag tag-innovate">Innovate</span></div>
+        <span class="verdict v-no">✗ DSA Declines</span>
+      </div>
+      <div class="chat">
+        <div class="msg"><div class="avatar av-ae">AE</div><div class="bubble b-ae"><div class="sender s-ae">Account Executive</div><p>I'd love to run an open-ended AI innovation workshop with one of our existing customers — nothing specific in mind yet, just exploring what AI could do for them and deepening the relationship.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-no"><div class="sender s-dsa-no">✗ DSA — No real trigger, no workshop</div><p>Without a business trigger, this becomes an interesting conversation that leads nowhere — the customer walks away impressed but without a problem to solve, and I walk away with no qualified pipeline.</p></div></div>
+        <div class="msg dsa-msg"><div class="avatar av-dsa-no">DSA</div><div class="bubble b-dsa-note"><div class="sender s-dsa-note">DSA — Here's how to make it work</div><p>Let's work with you and the CSM to first identify a specific operational challenge or growth goal that AI could actually address. Once there's a real trigger, I'll design the workshop around it — with a clear purpose and a realistic path to a qualified opportunity.</p></div></div>
+      </div>
+      <div class="why-block"><div class="why-label">💡 Why this aligns with the playbook</div><p>The Innovate phase says to run expansion discovery only when there's a real business trigger. Innovation without a buying trigger creates activity, not pipeline. The DSA reframes rather than simply refusing — protecting pipeline quality while keeping the relationship intact.</p></div>
+    </div>
+
+  </div>
+  <div class="footer"><p>DSA Pipeline Progression Playbook — FY26 Scenario Illustrations</p><span class="brand">SAP Digital Sales</span></div>
+</div>
+</body></html>
